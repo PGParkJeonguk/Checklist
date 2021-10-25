@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="co.jeong.prj.purchase.service.PurchaseMapper">
+	<select id="purchaseSelectList" resultType="co.jeong.prj.purchase.service.PurchaseVO">
+		select * from purchase
+	</select>
+	
+	<select id="purchaseSelect" resultType="co.jeong.prj.purchase.service.PurchaseVO">
+		select * from purchase where purchasename = #{purchasename} and  purchasecompany = #{purchasecompany}
+	</select>
+	
+	<insert id="purchaseInsert" parameterType="co.jeong.prj.purchase.service.PurchaseVO">
+		insert into purchase
+		values(pur_squ.nextval,sysdate,#{purchasekind},#{purchasename},#{purchasecompany},
+		#{purchaseprice},#{purchaseacount},#{username})
+	</insert>
+	
+	<update id="purchaseUpdate" parameterType="co.jeong.prj.purchase.service.PurchaseVO">
+		update purchase set purchasekind = #{purchasekind},purchasename = #{purchasename}, purchasecompany = #{purchasecompany}, 
+		purchaseprice = #{purchaseprice}, purchaseacount = #{purchaseacount} where purchasenum = #{purchasenum}
+	</update>
+	
+	<delete id="purchaseDelete" parameterType="co.jeong.prj.purchase.service.PurchaseVO">
+		delete from purchase where purchasenum = #{purchasenum}
+	</delete>
+	
+</mapper>

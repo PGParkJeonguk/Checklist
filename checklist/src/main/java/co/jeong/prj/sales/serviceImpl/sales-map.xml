@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.jeong.prj.sales.service.SalesMapper">
+	<select id="SalesSelectList" resultType="co.jeong.prj.sales.service.SalesVO">
+		SELECT * FROM sales
+	</select>
+	
+	<select id="SalesSelect" resultType="co.jeong.prj.sales.service.SalesVO"
+							 parameterType="co.jeong.prj.sales.service.SalesVO">
+		select * from sales where salesname = #{salesname} and salescompany = #{salescompany}
+	</select>
+	
+	<insert id="SalesInsert" parameterType="co.jeong.prj.sales.service.SalesVO">
+		insert into sales 
+		values(S_SQU.nextval,#{saleskind},#{salesname},#{salescompany},#{salesclass},
+		#{salesprice},#{salesacount},#{username},#{salesdate})
+	</insert>
+	
+	<update id="SalesUpdate" parameterType="co.jeong.prj.sales.service.SalesVO">
+		update sales set saleskind = #{saleskind}, salesname = #{salesname}, salescompany = #{salescompany},  
+		salesprice = #{salesprice},salesacount = #{salesacount},salesdate = #{salesdate} where salesnum = #{salesnum}
+	</update>
+	
+	<delete id="SalesDelete" parameterType="co.jeong.prj.sales.service.SalesVO">
+		delete from sales where salesnum = #{salesnum}
+	</delete>
+</mapper>
